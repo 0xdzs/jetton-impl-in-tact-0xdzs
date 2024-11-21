@@ -1,17 +1,15 @@
 import {
-    WalletContractV4,
     beginCell,
     Address,
     contractAddress,
     ContractProvider,
-    TonClient4,
-    TonClient,
     fromNano,
     toNano,
     Cell,
     BitString,
     Slice,
-} from "ton";
+} from "@ton/core";
+import { TonClient, TonClient4, WalletContractV4 } from "@ton/ton";
 import { printSeparator } from "./utils/print";
 
 // Contract Abi //

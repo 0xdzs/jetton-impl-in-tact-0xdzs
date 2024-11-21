@@ -1,4 +1,4 @@
-# 🚚 Jetton Implementation Template by Howard
+Ref: https://github.com/howardpen9/jetton-implementation-in-tact 
 
 This project is targeting to provide a template for the Jetton Implementation. It's a good start point for the developer to start the Jetton Implementation.
 
@@ -13,12 +13,6 @@ yarn read # To read contract data from the blockchain
 yarn d1 # (Optional) To Transfer the Jetton Token to the new account
 yarn d2 # (Optional) To generate the Transfer URL to let the new account to transfer the Jetton Token to the other account
 ```
-
-🔍 Detail can be found in `package.json` LOL
-
-# ✨ Important knowledge points
-
-![image1.png](./image1.png)
 
 -   Store the Jetton content in the `Cell` data type.
 -   Use lowercase for the name in `get_jetton_data()` as per [TEP-74](https://github.com/ton-blockchain/TEPs/blob/master/text/0074-jettons-standard.md). Otherwise, major explorers won't be able to read the Jetton information correctly.

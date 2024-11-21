@@ -142,7 +142,7 @@ contract JettonDefaultWallet
         // Update balance
         self.balance = (self.balance - msg.amount);
         require(self.balance >= 0, "Invalid balance");
-        let init: StateInit = initOf JettonDefaultWallet(msg.sender, self.master);
+        let init: StateInit = initOf JettonDefaultWallet(msg.destination, self.master);
         let wallet_address: Address = contractAddress(init);
         send(SendParameters{
                 to: wallet_address,
