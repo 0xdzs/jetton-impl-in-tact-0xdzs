@@ -1,5 +1,8 @@
+// ... existing code ...
+# Node.js and NVM files
+.nvm
+.nvm/*
+~/.nvm/
 node_modules
 *.env
 sources/output
-# Add these lines to prevent Node.js binaries and nvm files
-.nvm/
