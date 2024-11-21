@@ -1,8 +1,12 @@
-// ... existing code ...
+# ... existing code ...
 # Node.js and NVM files
-.nvm
-.nvm/*
+node_modules/
+.nvm/
 ~/.nvm/
-node_modules
+.npm/
+npm-debug.log*
 *.env
 sources/output
+
+# Specific Node binary paths
+**/versions/node/**/bin/
