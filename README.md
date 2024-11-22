@@ -1,9 +1,16 @@
 Ref: https://github.com/howardpen9/jetton-implementation-in-tact 
 
-This project is targeting to provide a template for the Jetton Implementation. It's a good start point for the developer to start the Jetton Implementation.
+Tests:
+whether contract deployed successfully 
+Minting is successfully 
+should transfer successfully 
+Mint tokens then Burn tokens 
+Should return value 
+Convert Address Format 
+Onchian Testing: DeDust 
+Onchian Testing: STON.fi 
 
 ### Usage
-
 ```bash
 yarn build # To build & compile the contract
 yarn test # To run test cases for the contract
@@ -26,13 +33,6 @@ yarn d2 # (Optional) To generate the Transfer URL to let the new account to tran
 -   https://github.com/ton-blockchain/TEPs/blob/master/text/0074-jettons-standard.md
 -   https://docs.ton.org/develop/dapps/asset-processing/jettons
 -   https://docs.tact-lang.org/learn/jetton/jetton-3
-
-## Community
-
--   Tact Lang Community (https://t.me/tactlang)
--   Ton101 (https://t.me/ton101)
--   TON Dev Chat[EN] (https://t.me/tondev_eng)
--   TON Dev 中文 (https://t.me/tondev_zh)
 
 ## Deployment
 

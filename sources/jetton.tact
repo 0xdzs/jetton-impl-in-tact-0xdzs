@@ -6,13 +6,16 @@ trait Jetton with Ownable {
     total_supply: Int;
     mintable: Bool;
     owner: Address;
+    // jetton metadata
     content: Cell;
 
+    // update jetton metadata
     receive(msg: TokenUpdateContent){
         self.requireOwner(); // Allow changing content only by owner
         self.content = msg.content; // Update content
     }
 
+    // burn jetton
     receive(msg: TokenBurnNotification){
         self.requireSenderAsWalletOwner(msg.sender); // Check wallet
         self.total_supply = (self.total_supply - msg.amount); // Update supply
@@ -30,6 +33,9 @@ trait Jetton with Ownable {
     }
 
     // https://github.com/ton-blockchain/TEPs/blob/master/text/0089-jetton-wallet-discovery.md
+    // wallet address discovery
+    // - allow discovery of jetton wallet address by anyone
+    // - jetton wallet addresses are deterministically calculated from the owner address and the jetton master address
     receive(msg: ProvideWalletAddress){
         // 0x2c76b973
         require(context().value >= ton("0.0061"), "Insufficient gas");
@@ -112,6 +118,7 @@ trait Jetton with Ownable {
             };
     }
 
+    // Get the address of the jetton wallet for a given owner
     get fun get_wallet_address(owner: Address): Address {
         return contractAddress(initOf JettonDefaultWallet(owner, myAddress()));
     }
@@ -121,6 +128,7 @@ trait Jetton with Ownable {
 @interface("org.ton.jetton.wallet")
 contract JettonDefaultWallet
 {
+    // Constants for gas calculations
     const minTonsForStorage: Int = ton("0.019");
     const gasConsumption: Int = ton("0.013");
     balance: Int as coins = 0;
@@ -132,6 +140,10 @@ contract JettonDefaultWallet
         self.master = master;
     }
 
+    // Used when user wants to send tokens
+    // only the wallet owner can transfer tokens
+    // external interface, needs more validation
+    // Start of transfer → converts to internal transfer
     receive(msg: TokenTransfer){
         // 0xf8a7ea5
         let ctx: Context = context(); // Check sender
@@ -162,7 +174,7 @@ contract JettonDefaultWallet
             }
         );
     }
-
+    // Internal Transfer 
     receive(msg: TokenTransferInternal){
         // 0x178d4519
         let ctx: Context = context();
@@ -237,6 +249,7 @@ contract JettonDefaultWallet
         return msg_value;
     }
 
+    // Handles failed transfers by restoring balances.
     bounced(msg: bounced<TokenTransferInternal>){
         self.balance = (self.balance + msg.amount);
     }
